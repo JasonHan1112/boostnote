@@ -1,0 +1,28 @@
+createdAt: "2019-09-05T02:40:58.388Z"
+updatedAt: "2019-09-05T02:44:37.328Z"
+type: "SNIPPET_NOTE"
+folder: "0f2348c925e25ffcf8a0"
+title: "test_snippets description"
+tags: [
+  "test_snippets"
+]
+description: "test_snippets description"
+snippets: [
+  {
+    name: "hello_world.c"
+    mode: "C"
+    content: '''
+      #include <stdio.h>
+      #include <stdlib.h>
+      
+      void main(void)
+      {
+        printf("hello world\\n");
+        return;
+      }
+    '''
+    linesHighlighted: []
+  }
+]
+isStarred: false
+isTrashed: false

@@ -1,0 +1,20 @@
+{
+  "folders": [
+    {
+      "key": "0f2348c925e25ffcf8a0",
+      "color": "#3FD941",
+      "name": "test"
+    },
+    {
+      "key": "cdf3da13e79e819c8162",
+      "color": "#E8D252",
+      "name": "daily"
+    },
+    {
+      "key": "c34f5c53c8fea0d08916",
+      "color": "#2BA5F7",
+      "name": "socket"
+    }
+  ],
+  "version": "1.0"
+}

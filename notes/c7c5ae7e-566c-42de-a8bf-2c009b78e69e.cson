@@ -1,0 +1,114 @@
+createdAt: "2019-09-05T02:45:33.128Z"
+updatedAt: "2019-09-05T08:42:08.322Z"
+type: "MARKDOWN_NOTE"
+folder: "0f2348c925e25ffcf8a0"
+title: "hello world"
+tags: [
+  "markdown_test"
+]
+content: '''
+  # hello world
+  ## hello world
+  ### hello world
+  hello world
+  
+  **hello world** [bold]
+  
+  *hello world* [italic]
+  
+  ~~hello world~~ [strikethrough]
+  
+  >hello world
+  >>hello world
+  >>>hello world
+  
+  ![hello_world.png](:storage\\c7c5ae7e-566c-42de-a8bf-2c009b78e69e\\0206a992.png)
+  [hello world](http://hello_world.com)
+  
+  ---
+  
+  - hello world
+  + hello world
+  * hello world
+  
+  1. hello world
+     - hello world
+        - hello world
+        - hello world
+        
+  2. hello world
+     - hello world
+     - hello world
+  
+  
+  hello|hello|hello
+  -|-|-
+  world|world|world
+  world|world|world
+  
+  
+  ``````
+  #include <stdlib.h>
+  #include <stdio.h>
+  int main(int argc, char * argv[]*)
+  {
+    printf("hello world\\n");
+    return 0;
+  }
+  ``````
+  ```
+  int __sys_socket(int family, int type, int protocol)
+  {
+  	int retval;
+  	struct socket *sock;
+  	int flags;
+  
+  	/* Check the SOCK_* constants for consistency.  */
+  	BUILD_BUG_ON(SOCK_CLOEXEC != O_CLOEXEC);
+  	BUILD_BUG_ON((SOCK_MAX | SOCK_TYPE_MASK) != SOCK_TYPE_MASK);
+  	BUILD_BUG_ON(SOCK_CLOEXEC & SOCK_TYPE_MASK);
+  	BUILD_BUG_ON(SOCK_NONBLOCK & SOCK_TYPE_MASK);
+  
+  	flags = type & ~SOCK_TYPE_MASK;
+  	if (flags & ~(SOCK_CLOEXEC | SOCK_NONBLOCK))
+  		return -EINVAL;
+  	type &= SOCK_TYPE_MASK;
+  
+  	if (SOCK_NONBLOCK != O_NONBLOCK && (flags & SOCK_NONBLOCK))
+  		flags = (flags & ~SOCK_NONBLOCK) | O_NONBLOCK;
+  
+  	retval = sock_create(family, type, protocol, &sock);
+  	if (retval < 0)
+  		return retval;
+  
+  	return sock_map_fd(sock, flags & (O_CLOEXEC | O_NONBLOCK));
+  }
+  
+  SYSCALL_DEFINE3(socket, int, family, int, type, int, protocol)
+  {
+  	return __sys_socket(family, type, protocol);
+  }
+  
+  
+  ```
+  
+  
+  st=>start: Start:>http://www.google.com[blank]
+  e=>end:>http://www.google.com
+  op1=>operation: My Operation
+  sub1=>subroutine: My Subroutine
+  cond=>condition: Yes
+  or No?:>http://www.google.com
+  io=>inputoutput: catch something...
+  
+  st->op1->cond
+  cond(yes)->io->e
+  cond(no)->sub1(right)->op1
+  
+  
+  
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false
