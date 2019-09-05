@@ -1,5 +1,5 @@
 createdAt: "2019-09-05T02:45:33.128Z"
-updatedAt: "2019-09-05T08:42:08.322Z"
+updatedAt: "2019-09-05T10:01:52.113Z"
 type: "MARKDOWN_NOTE"
 folder: "0f2348c925e25ffcf8a0"
 title: "hello world"
@@ -92,8 +92,8 @@ content: '''
   
   ```
   
-  
-  st=>start: Start:>http://www.google.com[blank]
+  ```flowchart
+  st=>start:>http://www.google.com[blank]
   e=>end:>http://www.google.com
   op1=>operation: My Operation
   sub1=>subroutine: My Subroutine
@@ -104,7 +104,7 @@ content: '''
   st->op1->cond
   cond(yes)->io->e
   cond(no)->sub1(right)->op1
-  
+  ```
   
   
   
