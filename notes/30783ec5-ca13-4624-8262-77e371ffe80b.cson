@@ -1,0 +1,25 @@
+createdAt: "2019-09-06T04:59:36.156Z"
+updatedAt: "2019-09-06T05:06:56.691Z"
+type: "MARKDOWN_NOTE"
+folder: "cdf3da13e79e819c8162"
+title: "PME Turn off message 梳理 copy"
+content: '''
+  2019/9/6
+  # PME Turn off message 梳理
+  - BIOS发送message **BIOSSMC_MSG_SleepEntry**
+    - **void fSMC_MSG_SleepEntry(uint32_t MsgPort)**
+    - **S5_EntrySequence()**
+      - writeSmnReg(mmNB_PCI_ARB_alt_1, nb_pcie_arb.val) //set PMETurnoff = 1
+      - **waiting for PMEToACKStatus = 1**
+  # wpa_supplicant error
+  - 显示如下错误
+  ![微信图片编辑_20190906125525.jpg](:storage\\76aeeaed-e5a0-4ebc-bd91-53f997ed53cd\\c075a6ad.jpg)
+  
+    - 注意错误提示（Device or resource busy）
+    - 查看是否有进程占用资源：**ps aux | grep wpa**
+    - kill进程：**pkill wpa_supplicant**
+'''
+linesHighlighted: []
+tags: []
+isStarred: false
+isTrashed: true
