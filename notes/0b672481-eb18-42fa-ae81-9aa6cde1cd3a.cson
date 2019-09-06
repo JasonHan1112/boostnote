@@ -1,0 +1,18 @@
+createdAt: "2019-09-06T07:34:45.779Z"
+updatedAt: "2019-09-06T08:31:38.105Z"
+type: "MARKDOWN_NOTE"
+folder: "c34f5c53c8fea0d08916"
+title: "printk debug"
+tags: []
+content: '''
+  2019/9/6
+  # printk debug
+  - 启动参数添加 **console=ttyS0,115200n8**
+    - 进入系统/boot
+  
+  - 进系统后，**echo 7 > /proc/sys/kernel/printk**
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false
