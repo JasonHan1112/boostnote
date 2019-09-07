@@ -1,0 +1,17 @@
+createdAt: "2019-09-07T03:35:58.967Z"
+updatedAt: "2019-09-07T03:36:04.176Z"
+type: "MARKDOWN_NOTE"
+folder: "db14d1ccf5dc5667a8ac"
+title: "dpkg安装软件报缺少依赖的错误"
+tags: []
+content: '''
+  2019/9/7
+  # dpkg安装软件报缺少依赖的错误
+  - 安装软件
+  dpkg -i xxxx.deb
+  - 修复缺少依赖
+  sudo apt --fix-broken install
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

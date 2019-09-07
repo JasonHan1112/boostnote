@@ -19,6 +19,11 @@
       "key": "7ad775b2596cb3254d31",
       "color": "#3FD941",
       "name": "raspberry_jtag"
+    },
+    {
+      "key": "db14d1ccf5dc5667a8ac",
+      "color": "#3FD941",
+      "name": "linux app"
     }
   ],
   "version": "1.0"
