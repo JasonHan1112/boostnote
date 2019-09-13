@@ -1,5 +1,5 @@
 createdAt: "2019-09-05T12:36:11.435Z"
-updatedAt: "2019-09-07T06:11:45.036Z"
+updatedAt: "2019-09-09T09:51:45.633Z"
 type: "MARKDOWN_NOTE"
 folder: "c34f5c53c8fea0d08916"
 title: "socket的创建原理解析"
@@ -49,7 +49,7 @@ content: '''
   	if (SOCK_NONBLOCK != O_NONBLOCK && (flags & SOCK_NONBLOCK))
   		flags = (flags & ~SOCK_NONBLOCK) | O_NONBLOCK;
   
-  	retval = sock_create(family, type, protocol, &sock);//关键步骤
+  	retval = sock_create(family, type, protocol, &sock);//创建socket
   	if (retval < 0)
   		return retval;
   

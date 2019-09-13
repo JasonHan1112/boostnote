@@ -1,0 +1,20 @@
+createdAt: "2019-09-09T08:39:21.530Z"
+updatedAt: "2019-09-12T04:11:28.928Z"
+type: "MARKDOWN_NOTE"
+folder: "cdf3da13e79e819c8162"
+title: "Daily Note"
+tags: []
+content: '''
+  # Daily Note
+  - 2019/9/9
+    - 修改read_pcie_cfg write_pcie_cfg interface, 使其发出1DW TLP
+    - 并修改mmap不能写访问的bug
+    - 参考i40e驱动
+  - 2019/9/12
+    - linux的问题多从dmesg里找答案
+      - dmesg | grep bug 
+    - **竟然忘记了**  free查看内存使用情况
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

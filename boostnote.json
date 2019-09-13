@@ -24,6 +24,11 @@
       "key": "db14d1ccf5dc5667a8ac",
       "color": "#3FD941",
       "name": "linux app"
+    },
+    {
+      "key": "50afd7072c26f2b825a5",
+      "color": "#FF8E00",
+      "name": "pcie"
     }
   ],
   "version": "1.0"
