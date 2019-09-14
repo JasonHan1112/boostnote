@@ -29,6 +29,11 @@
       "key": "50afd7072c26f2b825a5",
       "color": "#FF8E00",
       "name": "pcie"
+    },
+    {
+      "key": "05676453edc455fff69d",
+      "color": "#3FD941",
+      "name": "lddr3"
     }
   ],
   "version": "1.0"

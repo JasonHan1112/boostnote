@@ -1,0 +1,42 @@
+createdAt: "2019-09-14T02:27:08.421Z"
+updatedAt: "2019-09-14T09:08:02.008Z"
+type: "MARKDOWN_NOTE"
+folder: "05676453edc455fff69d"
+title: "Chapter 2: Building and Running Modules"
+tags: []
+content: '''
+  # Chapter 2: Building and Running Modules
+  - hello_world module
+    - (MODULE_LICENSE) is used to tell thekernel that this module bears a free license; without such a declaration, the kernel complains when the module is loaded.
+    -  The kernel needs its own printing function because it runs by itself, without the help of the C library. The module can call printk because, after insmod has loaded it, the module is linked to the kernel and can access the kernel’s public symbols (functions and variables, as detailed in the next section). 
+    -  The message goes to one of the system log files, such as /var/log/messages (the name of the actual file varies between Linux distributions). 
+    -   whereas an application that terminates can be lazy in releasing resources or avoids clean up altogether, **the exit function of a module must  carefully undo everything the init function built up, or the pieces remain around until the system is rebooted.**
+    -   A module, on the other hand, is linked only to the kernel, and the only functions it can call are the ones **exported by the kernel**; there are no libraries to link to. The printk function used in hello.c earlier, for example, is the version of printf defined within the kernel and exported to modules. It behaves similarly to the original function, with a few minor differences, the main one being **lack of floating-point support.**
+    - linking a module to the kernel   
+  ![无标题1.png](:storage\\bb78eedd-f09f-4306-8712-11679cfa9231\\30657281.png)
+    -   example: hello world
+  ```c
+  #include <linux/init.h>
+  #include <linux/module.h>
+  MODULE_LICENSE("Dual BSD/GPL");
+  static int hello_init(void)
+  {
+      printk(KERN_ALERT "Hello, world\\n");
+      return 0;
+  }
+  static void hello_exit(void)
+  {
+      printk(KERN_ALERT "Goodbye, cruel world\\n");
+  }
+  module_init(hello_init);
+  module_exit(hello_exit);
+  ```
+  - Unix transfers execution from user space to kernel space whenever an application issues a system call or is suspended by a hardware interrupt. Kernel code executing a system call is working in the context of a process—it operates on behalf of the calling rocess and is able to access data in the process’s address space. Code that handles interrupts, on the other hand, is asynchronous with respect to rocesses and is not related to any particular process.
+  - The role of a module is to extend kernel functionality; modularized code runs in kernel space. Usually a driver performs both the tasks outlined previously: some functions in the module are executed as part of system calls, and some are in charge of interrupt handling.
+  -  Kernel code does not run in such a simple world, and even the simplest kernel modules must be written with the idea that many things can be happening at once.
+  -  If you do not write your code with concurrency in mind, it will be subject to catastrophic failures that can be exceedingly difficult to debug.
+  -  Applications are laid out in virtual memory with a very large stack area. The stack, of course, is used to hold the function call history and all automatic variables created by currently active functions. The kernel, instead, has a very small stack; it can be as small as a single, 4096-byte page. Your functions must share that stack with the entire kernel-space call chain. Thus, it is never a good idea to declare large automatic variables; if you need larger structures, you should allocate them dynamically at call time.
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false
