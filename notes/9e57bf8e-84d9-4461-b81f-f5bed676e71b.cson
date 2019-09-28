@@ -1,0 +1,13 @@
+createdAt: "2019-09-21T03:07:22.296Z"
+updatedAt: "2019-09-21T03:24:35.011Z"
+type: "MARKDOWN_NOTE"
+folder: "cdf3da13e79e819c8162"
+title: "strace 学习"
+tags: []
+content: '''
+  # strace 学习
+  It intercepts and records the system calls which are called by a process and the  signals  which  are  received by a process.  The name of each system call, its arguments and its return value are printed on standard error or to the file specified with the -o option.
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

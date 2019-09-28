@@ -1,5 +1,5 @@
 createdAt: "2019-09-09T08:39:21.530Z"
-updatedAt: "2019-09-12T04:11:28.928Z"
+updatedAt: "2019-09-28T04:33:02.607Z"
 type: "MARKDOWN_NOTE"
 folder: "cdf3da13e79e819c8162"
 title: "Daily Note"
@@ -14,6 +14,61 @@ content: '''
     - linux的问题多从dmesg里找答案
       - dmesg | grep bug 
     - **竟然忘记了**  free查看内存使用情况
+  - 2019/9/16
+  模块编译的Makefile
+  ```c
+  # If KERNELRELEASE is defined, we've been invoked from the
+  # kernel build system and can use its language.
+  ifneq ($(KERNELRELEASE),)
+      obj-m := hello.o
+  # Otherwise we were called directly from the command
+  # line; invoke the kernel build system.
+  else
+      KERNELDIR ?= /lib/modules/$(shell uname -r)/build
+      PWD  := $(shell pwd)
+  default:
+      $(MAKE) -C $(KERNELDIR) M=$(PWD) modules
+  endif
+  ```
+  会invoke这个Makefile两次
+  1. 如果在commandline中，没有进入内核的编译流程，那么KERNELRELEASE= ,然后会去指定的内核目录去找到内核Makefile，执行内核的Makefile
+  2. 执行内核的Makefile的时候会KERNELRELEASE != ,从而指定obj-m := hello.o进而编译该模块
+  
+  - 2019/9/24
+    - 在linux内核代码中，系统调用都会用sys_作为前缀
+    - MMU相关
+      - mmu中不存放页表页目录，只是存放页表的地址。系统初始化代码会在内存中生成页表，然后把页表地址设置给MMU对应寄存器，使MMU知道页表在物理内存中的什么位置，以便在需要时进行查找。之后通过专用指令启动MMU，以此为分界，之后程序中所有内存地址都变成虚地址，MMU硬件开始自动完成查表和虚实地址转换。
+  
+  - 2019/9/26
+    - 在x86环境下配置使用MP0 CCP的记录
+      1. 需要修改MP0 CCP初始化代码，使其空间能被public进行访问
+      2. 修改cmd queue的存放地址，（给硬件必须是物理地址，在DDR上）
+      3. 需要关闭IOMMU，由于IOMMU的表没有更新，告诉CCP的物理地址不能被正确的路由到正确的ddr地址
+      4. 注意查看ERROR STATUS，【MP0_CCP_CMD_STATUS_Q0， PSPCCP_DMA_READ_STATUS_Q0， PSPCCP_DMA_WRITE_STATUS_Q0】当有ERROR_DESCRIPTOR错误时说明cmd有问题，如果是ERROR_DATA说明是返回的数据有问题。
+      5. 遇到的问题：DDR-*MMIO（没有ERROR STATUS），MMIO-*DDR（有ERROR DATA）由于RC发出write request是post，而read是non-post，bar空间有些不允许访问，会回CA，导致有ERROR STATUS
+  - 2019/9/28
+  Makefile vpath
+  Makefile文件中的特殊变量“VPATH”就是完成这个功能的，如果没有指明这个变量，make只会在当前的目录中去找寻依赖文件和目标文件。如果定义了这个变量，那么，make就会在当当前目录找不到的情况下，到所指定的目录中去找寻文件了。
+      VPATH = src:../headers
+  上面的的定义指定两个目录，“src”和“../headers”，make会按照这个顺序进行搜索。**目录由“冒号”分隔**。（当然，当前目录永远是最高优先搜索的地方）
+  另一个设置文件搜索路径的方法是使用make的“vpath”关键字（注意，它是全小写的）， 这不是变量，这是一个make的关键字，这和上面提到的那个VPATH变量很类似，但是它更为灵活。它可以指定不同的文件在不同的搜索目录中。这是一个很 灵活的功能。它的使用方法有三种：
+      1、vpath *pattern* *directories*
+      为符合模式*pattern*的文件指定搜索目录*directories*。
+      2、vpath *pattern*
+      清除符合模式*pattern*的文件的搜索目录。
+      3、vpath
+      清除所有已被设置好了的文件搜索目录。
+  vapth使用方法中的*pattern*需要包含“%”字符。“%”的意思是匹 配零或若干字符，例如，“%.h”表示所有以“.h”结尾的文件。*pattern*指定了要搜索的文件集， 而*directories*则指定了*pattern*的文件集的搜索的目录。例如：
+      vpath %.h ../headers
+  该语句表示，要求make在“../headers”目录下搜索所有以“.h”结尾的文件。（如果某文件在当前目录没有找到的话）
+  我们可以连续地使用vpath语句，以指定不同搜索策略。如果连续的vpath语句中出现了相同的*pattern*，或是被重复了的*pattern*，那么，make会按照vpath语句的先后顺序来执行搜索。如：
+      vpath %.c foo
+      vpath %   blish
+      vpath %.c bar
+  其表示“.c”结尾的文件，先在“foo”目录，然后是“blish”，最后是“bar”目录。
+      vpath %.c foo:bar
+      vpath %   blish
+  而上面的语句则表示“.c”结尾的文件，先在“foo”目录，然后是“bar”目录，最后才是"blish"目录
 '''
 linesHighlighted: []
 isStarred: false
