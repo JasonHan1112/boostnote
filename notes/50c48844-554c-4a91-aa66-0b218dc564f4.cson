@@ -1,5 +1,5 @@
 createdAt: "2019-09-09T08:39:21.530Z"
-updatedAt: "2019-09-28T04:33:02.607Z"
+updatedAt: "2019-10-08T12:48:43.282Z"
 type: "MARKDOWN_NOTE"
 folder: "cdf3da13e79e819c8162"
 title: "Daily Note"
@@ -69,6 +69,35 @@ content: '''
       vpath %.c foo:bar
       vpath %   blish
   而上面的语句则表示“.c”结尾的文件，先在“foo”目录，然后是“bar”目录，最后才是"blish"目录
+  
+  - 2019/10/1
+  内核模块的加载用insmod的时候是通过模块代码.c的名字来区分的。通过同一个名字编译出来的模块都要加载的时候会提示
+  insmod: ERROR: could not insert module xxx.ko: File exists
+  
+  - 2019/10/2
+  ```c
+  /**
+   * remap_pfn_range - remap kernel memory to userspace
+   * @vma: user vma to map to
+   * @addr: target user address to start at
+   * @pfn: physical address of kernel memory, must physical page frame number
+   * @size: size of map area
+   * @prot: page protection flags for this mapping
+   *
+   *  Note: this is only safe if the mm semaphore is held when called.
+   */
+  int remap_pfn_range(struct vm_area_struct *vma, unsigned long addr,
+  		    unsigned long pfn, unsigned long size, pgprot_t prot)
+  
+  ```
+  该函数将指定的物理页帧映射到用户空间，使得多个进程能共享一段物理内存。
+  - 2019/10/8
+    - VCO 指输出频率与输入控制电压有对应关系的振荡电路(VCO)，频率是输入信号电压的函数的振荡器VCO，振荡器的工作状态或振荡回路的元件参数受输入控制电压的控制，就可构成一个压控振荡器。
+  ![新建位图图像.bmp](:storage\\50c48844-554c-4a91-aa66-0b218dc564f4\\3b423a74.bmp)
+  图 2是克拉泼型LC压控振荡器的原理电路。图中，T为晶体管，L为回路电感，C1、C2、Cv为回路电容,Cv为变容二极管反向偏置时呈现出的容量;C1、C2通常比Cv大得多。当输入控制电压uc改变时，Cv随之变化，因而改变振荡频率。
+  ![新建位图图像 (2).bmp](:storage\\50c48844-554c-4a91-aa66-0b218dc564f4\\d4eb8510.bmp)
+  
+  
 '''
 linesHighlighted: []
 isStarred: false
