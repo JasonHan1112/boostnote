@@ -1,5 +1,5 @@
 createdAt: "2019-09-14T02:26:56.996Z"
-updatedAt: "2019-10-10T07:47:09.450Z"
+updatedAt: "2019-10-11T07:56:50.370Z"
 type: "MARKDOWN_NOTE"
 folder: "05676453edc455fff69d"
 title: "Chapter 6: Advanced Char Driver Operations"
@@ -117,6 +117,11 @@ content: '''
   - Exclusive waits
     -  If the number of processes in the wait queue is large, this “thundering herd” behavior can seriously degrade the performance of the system.
     - When a wait queue entry has the WQ_FLAG_EXCLUSIVE flag set, it is added to the end of the wait queue. Entries without that flag are, instead, added to the beginning. When wake_up is called on a wait queue, it stops after waking the first process that has the WQ_FLAG_EXCLUSIVE flag set.
+  
+  - poll and select
+    - they are often used in applications that must use multiple input or output streams without getting stuck on any one of them.
+    - Whenever a user application calls poll, select, or epoll_ctl,* the kernel invokes the poll method of all files referenced by the system call, passing the *same poll_table* to each of them. The poll_table structure is just a wrapper around a function that builds the actual data structure. That structure, for poll and select, is a linked list of memory pages containing poll_table_entry structures. Each poll_table_entry holds the struct file and wait_queue_head_t pointers passed to poll_wait, along with an associated wait queue entry. The call to poll_wait sometimes also adds the process to the given wait queue. The whole structure must be maintained by the kernel so that
+  the process can be removed from all of those queues before poll or select returns.
 '''
 linesHighlighted: []
 isStarred: false

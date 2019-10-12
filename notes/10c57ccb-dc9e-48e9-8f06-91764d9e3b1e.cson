@@ -1,0 +1,60 @@
+createdAt: "2019-10-11T08:05:00.304Z"
+updatedAt: "2019-10-11T08:08:39.093Z"
+type: "MARKDOWN_NOTE"
+folder: "c34f5c53c8fea0d08916"
+title: "Tips"
+tags: []
+content: '''
+  #Tips
+  - 2019/9/16
+  模块编译的Makefile
+  ```c
+  # If KERNELRELEASE is defined, we've been invoked from the
+  # kernel build system and can use its language.
+  ifneq ($(KERNELRELEASE),)
+      obj-m := hello.o
+  # Otherwise we were called directly from the command
+  # line; invoke the kernel build system.
+  else
+      KERNELDIR ?= /lib/modules/$(shell uname -r)/build
+      PWD  := $(shell pwd)
+  default:
+      $(MAKE) -C $(KERNELDIR) M=$(PWD) modules
+  endif
+  ```
+  会invoke这个Makefile两次
+  1. 如果在commandline中，没有进入内核的编译流程，那么KERNELRELEASE= ,然后会去指定的内核目录去找到内核Makefile，执行内核的Makefile
+  2. 执行内核的Makefile的时候会KERNELRELEASE != ,从而指定obj-m := hello.o进而编译该模块
+  
+  - 2019/9/24
+    - 在linux内核代码中，系统调用都会用sys_作为前缀
+    - MMU相关
+      - mmu中不存放页表页目录，只是存放页表的地址。系统初始化代码会在内存中生成页表，然后把页表地址设置给MMU对应寄存器，使MMU知道页表在物理内存中的什么位置，以便在需要时进行查找。之后通过专用指令启动MMU，以此为分界，之后程序中所有内存地址都变成虚地址，MMU硬件开始自动完成查表和虚实地址转换。
+  
+  - 2019/10/1
+  内核模块的加载用insmod的时候是通过模块代码.c的名字来区分的。通过同一个名字编译出来的模块都要加载的时候会提示
+  insmod: ERROR: could not insert module xxx.ko: File exists
+  
+  - 2019/10/2
+  ```c
+  /**
+   * remap_pfn_range - remap kernel memory to userspace
+   * @vma: user vma to map to
+   * @addr: target user address to start at
+   * @pfn: physical address of kernel memory, must physical page frame number
+   * @size: size of map area
+   * @prot: page protection flags for this mapping
+   *
+   *  Note: this is only safe if the mm semaphore is held when called.
+   */
+  int remap_pfn_range(struct vm_area_struct *vma, unsigned long addr,
+  		    unsigned long pfn, unsigned long size, pgprot_t prot)
+  
+  ```
+  该函数将指定的物理页帧映射到用户空间，使得多个进程能共享一段物理内存。
+  
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false
