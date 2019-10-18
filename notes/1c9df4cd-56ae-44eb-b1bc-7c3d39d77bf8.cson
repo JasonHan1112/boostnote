@@ -1,10 +1,19 @@
 createdAt: "2019-09-14T02:26:49.156Z"
-updatedAt: "2019-09-14T02:30:06.813Z"
+updatedAt: "2019-10-17T09:52:27.607Z"
 type: "MARKDOWN_NOTE"
 folder: "05676453edc455fff69d"
 title: "Chapter 8: Allocating Memory"
 tags: []
-content: "# Chapter 8: Allocating Memory"
+content: '''
+  # Chapter 8: Allocating Memory
+  - kmalloc
+  > - The allocated region is also contiguous in physical memory.
+  > - Using GFP_KERNEL means that kmalloc can put the current process to sleep waiting for a page when called in low-memory situations. 
+  > - GFP_KERNEL isn’t always the right allocation flag to use; sometimes kmalloc is called from outside a process’s context. This type of call can happen, for instance, in interrupt handlers, tasklets, and kernel timers. In this case, the current process should not be put to sleep, and the driver should use a flag of GFP_ATOMIC instead. The kernel normally tries to keep some free pages around in order to fulfill atomic allocation. When GFP_ATOMIC is used, kmalloc can use even the last free page. If that last page does not exist, however, the allocation fails.
+  >  - There is an upper limit to the size of memory chunks that can be allocated by kmalloc. 
+  - The size argument
+  > - Linux handles memory allocation by creating a set of pools of memory objects of fixed sizes. The one thing driver developers should keep in mind, though, is that the kernel can allocate only certain predefined, fixed-size byte arrays. 
+'''
 linesHighlighted: []
 isStarred: false
 isTrashed: false
