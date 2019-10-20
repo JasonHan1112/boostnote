@@ -1,5 +1,5 @@
 createdAt: "2019-10-11T08:05:00.304Z"
-updatedAt: "2019-10-19T02:40:57.343Z"
+updatedAt: "2019-10-20T12:15:39.829Z"
 type: "MARKDOWN_NOTE"
 folder: "c34f5c53c8fea0d08916"
 title: "Tips"
@@ -60,8 +60,7 @@ content: '''
       > a. 读请求会立即返回，说明 read 请求已经成功发起了。
       > b. 在后台完成读操作时，应用程序然后会执行其他处理操作。
       > c. 当 read 的响应到达时，就会产生一个信号或执行一个基于线程的回调函数来完成这次 I/O 处理过程。
-      ![figure5.png](:storage\\10c57ccb-dc9e-48e9-8f06-91764d9e3b1e\\2b73dc22.png)
-     
+  ![aio.bmp](:storage\\10c57ccb-dc9e-48e9-8f06-91764d9e3b1e\\be045c9e.bmp)
   
   
 '''
