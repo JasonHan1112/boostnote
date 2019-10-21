@@ -1,5 +1,5 @@
 createdAt: "2019-09-14T02:26:56.996Z"
-updatedAt: "2019-10-19T08:00:11.939Z"
+updatedAt: "2019-10-21T03:43:55.666Z"
 type: "MARKDOWN_NOTE"
 folder: "05676453edc455fff69d"
 title: "Chapter 6: Advanced Char Driver Operations"
@@ -130,13 +130,12 @@ content: '''
       - > the user programs must set the FASYNC flag in the device by means of the F_SETFL fcntl command.
     - The Driver’s Point of View
       - > When F_SETOWN is invoked, nothing happens, except that a value is assigned to filp->f_owner.
-      - >  When F_SETFL is executed to turn on FASYNC, the driver’s fasync method is called. This method is called whenever the value of FASYNC is changed in filp->f_flags to notify the driver of the change, so it can respond properly. The flag is cleared by default when the file is opened. We’ll look at the standard implementation of the driver method later in this section.
-      - >  When data arrives, all the processes registered for asynchronous notification must be sent a SIGIO signal.
+      - > When F_SETFL is executed to turn on FASYNC, the driver’s fasync method is called. This method is called whenever the value of FASYNC is changed in filp->f_flags to notify the driver of the change, so it can respond properly. The flag is cleared by default when the file is opened. We’ll look at the standard implementation of the driver method later in this section.
+      - > When data arrives, all the processes registered for asynchronous notification must be sent a SIGIO signal.
       - > struct fasync_struct; 
       - > fasync_helper; fasync_helper is invoked to add or remove entries from the list of interested processes when the FASYNC flag changes for an open file. 
       - > kill_fasync; kill_fasync is used to signal the interested processes when data arrives. Its arguments are the signal to send (usually SIGIO) and the band, which is almost always POLL_IN* (but that may be used to send “urgent” or out-of-band data in the networking code).
-      ->  We must invoke our fasync method when the file is closed to remove the file from the list of active
-  asynchronous readers.
+      - > We must invoke our fasync method when the file is closed to remove the file from the list of active asynchronous readers.
   
   
   
