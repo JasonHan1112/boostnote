@@ -1,5 +1,5 @@
 createdAt: "2019-09-14T02:26:46.051Z"
-updatedAt: "2019-10-21T09:40:54.717Z"
+updatedAt: "2019-10-22T08:39:39.996Z"
 type: "MARKDOWN_NOTE"
 folder: "05676453edc455fff69d"
 title: "Chapter 9: Communicating with Hardware"
@@ -49,6 +49,14 @@ content: '''
       > - void *ioremap(unsigned long phys_addr, unsigned long size);
       > - void *ioremap_nocache(unsigned long phys_addr, unsigned long size);
       > - void iounmap(void * addr);
+    - accessing I/O memory
+      > - unsigned int ioread8(void *addr);
+      > - unsigned int ioread16(void *addr);
+      > - unsigned int ioread32(void *addr);
+      > - void iowrite8(u8 value, void *addr);
+      > - void iowrite16(u16 value, void *addr);
+      > - void iowrite32(u32 value, void *addr);
+    >  addr should be an address obtained from ioremap
 '''
 linesHighlighted: []
 isStarred: false
