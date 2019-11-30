@@ -1,5 +1,5 @@
 createdAt: "2019-09-05T12:36:11.435Z"
-updatedAt: "2019-09-09T09:51:45.633Z"
+updatedAt: "2019-11-30T08:34:27.551Z"
 type: "MARKDOWN_NOTE"
 folder: "c34f5c53c8fea0d08916"
 title: "socket的创建原理解析"
@@ -228,6 +228,8 @@ content: '''
   
   
 '''
-linesHighlighted: []
+linesHighlighted: [
+  1
+]
 isStarred: false
 isTrashed: false

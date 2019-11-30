@@ -1,5 +1,5 @@
 createdAt: "2019-09-14T02:26:36.180Z"
-updatedAt: "2019-11-23T02:57:29.780Z"
+updatedAt: "2019-11-25T09:27:06.298Z"
 type: "MARKDOWN_NOTE"
 folder: "05676453edc455fff69d"
 title: "Chapter 14: The Linux Device Model"
@@ -27,6 +27,39 @@ content: '''
   #### Hotplug Event Generation
   - They are generated whenever a kobject is created or destroyed.
   - Hotplug events turn into an invocation of /sbin/hotplug, which can respond to each event by loading drivers, creating device nodes, mounting partitions, or taking any other action that is appropriate.
+  
+  ### Buses, Devices, and Drivers
+  #### Bus methods
+  - int (*match)(struct device *device, struct device_driver *driver);
+  This method is called, perhaps multiple times, whenever a new device or driver
+  is added for this bus. It should return a nonzero value if the given device can be
+  handled by the given driver. 
+  ```
+  static int ldd_match(struct device *dev, struct device_driver *driver)
+  {
+      return !strncmp(dev->bus_id, driver->name, strlen(driver->name));
+  }
+  ```
+  - int (*hotplug) (struct device *device, char **envp, int num_envp, char *buffer, int buffer_size);
+  This method allows the bus to add variables to the environment prior to the generation of a hotplug event in user space. 
+  
+  #### Iterating over devices and drivers
+  If you are writing bus-level code, you may find yourself having to perform some operation on all devices or drivers that have been registered with your bus.
+  To operate on every device known to the bus, use: 
+  ```
+  int bus_for_each_dev(struct bus_type *bus, struct device *start,
+    void *data, int (*fn)(struct device *, void *));
+    
+  int bus_for_each_drv(struct bus_type *bus, struct device_driver *start,
+    void *data, int (*fn)(struct device_driver *, void *));
+  ```
+  
+  #### Devices
+  - struct device *parent
+  The device’s “parent” device—the device to which it is attached. In most cases, a parent device is some sort of bus or host controller. If parent is NULL, the device is a top-level device.
+  
+  - Device structure embedding
+  - Driver structure embedding
 '''
 linesHighlighted: []
 isStarred: false
