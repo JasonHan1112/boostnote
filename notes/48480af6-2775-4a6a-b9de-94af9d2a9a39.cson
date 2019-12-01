@@ -1,5 +1,5 @@
 createdAt: "2019-10-15T12:23:24.401Z"
-updatedAt: "2019-10-16T12:00:17.148Z"
+updatedAt: "2019-12-01T02:34:07.448Z"
 type: "MARKDOWN_NOTE"
 folder: "cdf3da13e79e819c8162"
 title: "To do"
@@ -9,6 +9,7 @@ content: '''
   - slab/slob/slub
   - asynchronous I/O
   - kernel timer
+  - autoconf
 '''
 linesHighlighted: []
 isStarred: false
