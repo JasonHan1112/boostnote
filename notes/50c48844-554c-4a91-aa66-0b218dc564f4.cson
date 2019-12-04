@@ -1,5 +1,5 @@
 createdAt: "2019-09-09T08:39:21.530Z"
-updatedAt: "2019-11-30T08:24:31.621Z"
+updatedAt: "2019-12-04T13:26:30.302Z"
 type: "MARKDOWN_NOTE"
 folder: "cdf3da13e79e819c8162"
 title: "Daily Note"
@@ -98,7 +98,25 @@ content: '''
   
   
   
+  2019/12/4
+  ```
+  #if 1
+  #elif 2
+  #elif 3
+  #endif
   
+  ```
+  ```
+  #if defined TEST
+  #else defined TEST
+  #else
+  #endif
+  
+  ```
+  2019/12/4
+  - 通过nc可以创建listen，和发送消息
+  nc -l -t 9988
+  nc localhost 9988
 '''
 linesHighlighted: []
 isStarred: false

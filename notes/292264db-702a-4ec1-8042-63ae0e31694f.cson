@@ -1,0 +1,80 @@
+createdAt: "2019-12-02T12:22:38.239Z"
+updatedAt: "2019-12-04T13:07:44.613Z"
+type: "MARKDOWN_NOTE"
+folder: "321a76b22995ee491e72"
+title: "tips"
+tags: []
+content: '''
+  # tips
+  
+  ## htons （主机到短整型转换）
+  ### uint16_t htons(uint16_t hostshort);
+  function converts the unsigned short integer hostshort from host byte order to network byte order.
+  ## inet_pton (呈现形式到数值)
+  ### int inet_pton(int af, const char *src, void *dst);
+  convert IPv4 and IPv6 addresses from text to binary form
+  ## getaddrinfo (实现协议无关)
+  ### int getaddrinfo(const char *node, const char *service, const struct addrinfo *hints, struct addrinfo **res);
+  ### void freeaddrinfo(struct addrinfo *res);
+  ### int listen(int sockfd, int backlog);
+  The backlog argument defines the maximum length to which the queue of pending connections for sockfd may grow.  If a connection request arrives when the queue is full, the client may receive an error with an indication of ECONNREFUSED or, if the underlying protocol supports retransmission, the request may be ignored so that a later reattempt at connection succeeds.
+  ## raw socket
+  绕过传输层直接使用IPV4或IPV6协议收发数据，可以自己组帧。
+  ## 本地ip地址一般用*通配本地所有ip，通配地址通过在调用bind之前将套接字中的地址结构中的ip地址字段设置成INADDR_ANY
+  ## 套接字发送缓冲区(SO_SNDBU)
+  如果该套接字的发送缓冲区容不下改应用进程的所有数据，该应用程序将进入睡眠（默认套接字阻塞），内核将不从write系统调用中返回，直到进程缓冲区中的所有数据都复制到套接字发送缓冲区，因此write调用成功返回仅仅表示可以重新使用原来的应用缓冲区。
+  ![新建位图图像 (17).bmp](:storage\\292264db-702a-4ec1-8042-63ae0e31694f\\41cf9bc7.bmp)
+  ## ipv4套接字地址结构
+  ```
+  <netinet/in.h>
+  
+  struct in_addr {
+  in_addr s_addr; //32bits
+  
+  };
+  
+  struct sockaddr_in {
+    uint8_t sin_len; //16 bytes
+    sa_famliy_t sin_family; //AF_INET
+    in_port_t sin_port; //port number
+    struct in_addr sin_addr; //32bit addr
+    char sin_zero[8]; //unused, compliance with other protocal
+  };
+  ```
+  ## 通用套接字地址结构
+  ```
+  <sys/socket.h>
+  
+  struct sockaddr {
+    uint8_t sa_len; //16 bytes
+    sa_family_t sa_family; //address family AF_xxx value
+    char sa_data[14]; //protocol specific address
+  }
+  ```
+  ## ipv6套接字地址结构
+  ```
+  struct in6_addr {
+    uint8_t s6_addr[16]; //128bit ipv6 address, network byte ordered
+  };
+  
+  struct sockaddr_in6 {
+    uint8_t sin6_len; //28 bytes
+    sa_family_t sin6_family; //AF_INET6
+    in_port_t sin6_port; //transport layer port
+    
+    uint32_t sin6_flowinfo; //flow information undefined
+    struct in6_addr sin6_addr; // ipv6 address
+    uint32_t sin6_scope_id; //set of interfaces for a scope
+    
+  };
+  ```
+  ## connect()
+  该函数需要指定size，该size是为了告诉内核需要复制多少套接字地址结构数据到内核。
+  
+  ## getpeername
+  - int getpeername(int sockfd, struct sockaddr *addr, socklen_t *addrlen);
+  getpeername() returns the address of the peer connected to the socket sockfd, in the buffer pointed to by addr.  The addrlen argument should be initialized to indicate the amount of space pointed to by addr.  On return it contains the actual size of the name returned (in bytes).  The name is truncated if the buffer provided is too small.
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false
