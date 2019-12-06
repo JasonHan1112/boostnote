@@ -1,5 +1,5 @@
 createdAt: "2019-12-02T12:22:38.239Z"
-updatedAt: "2019-12-06T03:05:24.929Z"
+updatedAt: "2019-12-06T03:21:02.419Z"
 type: "MARKDOWN_NOTE"
 folder: "321a76b22995ee491e72"
 title: "tips"
@@ -172,6 +172,7 @@ content: '''
   ```
   ## 如果TCP客户端没有收到SYN分节的响应，则返回ETIMEDOUT。
   ## 如果客户端的syn的响应是RST，表示服务器主机在我们指定的端口上没有进程在等待与之连接，这是一种硬错误，客户一收到RST马上就要返回ECONNREFUSED
+  ## 如果一个TCP客户端或服务器未曾调用bind绑定一个端口，当调用connect或者listen时，内核就会为相应的套接字选择一个临时端口。让内核选择一个临时端口对于TCP客户端来说是正常的。除非需要用一个预留的端口，对于TCP服务器来说却极为罕见。
   
 '''
 linesHighlighted: []
