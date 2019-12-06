@@ -1,5 +1,5 @@
 createdAt: "2019-12-02T12:22:38.239Z"
-updatedAt: "2019-12-04T13:07:44.613Z"
+updatedAt: "2019-12-06T02:11:57.083Z"
 type: "MARKDOWN_NOTE"
 folder: "321a76b22995ee491e72"
 title: "tips"
@@ -74,6 +74,103 @@ content: '''
   ## getpeername
   - int getpeername(int sockfd, struct sockaddr *addr, socklen_t *addrlen);
   getpeername() returns the address of the peer connected to the socket sockfd, in the buffer pointed to by addr.  The addrlen argument should be initialized to indicate the amount of space pointed to by addr.  On return it contains the actual size of the name returned (in bytes).  The name is truncated if the buffer provided is too small.
+  
+  ## 字节序转换（主要用于port的转换）
+  - 主机字节序->网络字节序
+  uint16_t htons(uint16_t value);
+  uint32_t htonl(uint32_t value);
+  
+  - 网络字节序->主机字节序
+  uint16_t ntohs(uint16_t value);
+  uint32_t ntohl(uint16_t value);
+  
+  ## 字节操纵函数
+  void bzero(void *dest, size_t nbytes); //源自Berkeley
+  
+  ## 地址转换函数（在点分十进制可识别的地址和内核可用的数据地址之间转换）
+  ```
+  #include <arpa/inet.h>
+  
+  int inet_aton(const char *strptr, struct in_addr *addrptr);
+  char *inet_ntoa(struct in_addr inaddr);
+  in_addr_t inet_addr(const char * strptr);
+  
+  ```
+  ## 新的网络地址转换函数（iPv4和iPv6都适用）
+  ```c
+  int inet_pton(int family, const char *strptr, void *addrptr);
+  const char *inet_ntop(int family, const void *addrptr, char *strptr, size_t len);
+  ```
+  
+  ## 按照字节数读写网络数据demo
+  ```
+  ssize_t readn(int fd, void *vptr, size_t n)
+  {
+    size_t nleft; //剩下的字节数
+    ssize_t nread; //每一次读到的字节数
+    char *ptr;
+    nleft = n;
+    
+    while(nleft > 0)
+    {
+      if(nread = read(fd, ptr, nleft) < 0)
+      {
+        if(errno == EINTR) //被信号中断
+        {
+          nread = 0;
+        }
+        else
+        {
+          return -1;
+        }
+      
+      }
+      else if (nread == 0)
+      {
+        break;
+      }
+      
+      nleft -= nread;
+      ptr += nread;
+    
+    }
+    
+    return (n - nleft);
+  
+  }
+  
+  ```
+  ```
+  size_t writen(int fd, const void *vptr, size_t n)
+  {
+    size_t nleft;
+    ssize_t nwritten;
+    const char *ptr;
+    
+    ptr = vptr;
+    nleft = n;
+    while(nleft > 0)
+    {
+      if((nwritten = write(fd, ptr, n, nleft)) <= 0)
+      {
+        if(nwritten < 0 && errno == EINTR) //被信号中断
+        {
+          nwritten = 0;  
+        }
+        else
+        {
+          return (-1)
+        }
+      
+      }
+      nleft -= nwritten;
+      ptr += nwritten;
+    
+    }
+    reuturn (n);
+  }
+  ```
+  ## 如果客户端的syn的响应是RST，表示服务器主机在我们指定的端口上没有进程在等待与之连接，这是一种硬错误，客户一收到RST马上就要返回ECONNREFUSED
 '''
 linesHighlighted: []
 isStarred: false
