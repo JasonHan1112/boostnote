@@ -1,5 +1,5 @@
 createdAt: "2019-12-02T12:22:38.239Z"
-updatedAt: "2019-12-06T02:11:57.083Z"
+updatedAt: "2019-12-06T03:05:24.929Z"
 type: "MARKDOWN_NOTE"
 folder: "321a76b22995ee491e72"
 title: "tips"
@@ -170,7 +170,9 @@ content: '''
     reuturn (n);
   }
   ```
+  ## 如果TCP客户端没有收到SYN分节的响应，则返回ETIMEDOUT。
   ## 如果客户端的syn的响应是RST，表示服务器主机在我们指定的端口上没有进程在等待与之连接，这是一种硬错误，客户一收到RST马上就要返回ECONNREFUSED
+  
 '''
 linesHighlighted: []
 isStarred: false
