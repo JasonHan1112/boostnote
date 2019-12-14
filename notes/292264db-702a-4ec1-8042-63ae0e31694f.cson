@@ -1,5 +1,5 @@
 createdAt: "2019-12-02T12:22:38.239Z"
-updatedAt: "2019-12-13T09:01:38.021Z"
+updatedAt: "2019-12-14T03:57:50.294Z"
 type: "MARKDOWN_NOTE"
 folder: "321a76b22995ee491e72"
 title: "tips"
@@ -265,6 +265,20 @@ content: '''
     关闭连接写这一半，对于TCP套接字，这称为半关闭。当前留在套接字发送缓冲区的数据将被发送掉，后跟TCP的正常连接终止序列。
     - SHUT_RDWR
     连接的读半部和写半部都关闭这与调用shutdown两次等效第一次调用SHUT_RD，第二次调用指定SHUT_WR
+  
+  ## poll
+  ```c
+  struct pollfd{
+    int fd; //descriptor to check
+    short events; //events of interest on fd
+    short revents; //events that occurred on fd
+  };
+  int poll(struct pollfd *fdarray, unsigend long nfds, int timeout);
+  
+  ```
+  
+  ![新建位图图像 (10).bmp](:storage\\292264db-702a-4ec1-8042-63ae0e31694f\\13f4b135.bmp)
+  
 '''
 linesHighlighted: []
 isStarred: false
