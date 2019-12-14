@@ -1,5 +1,5 @@
 createdAt: "2019-11-30T08:23:48.270Z"
-updatedAt: "2019-11-30T08:24:52.077Z"
+updatedAt: "2019-12-11T03:18:26.542Z"
 type: "MARKDOWN_NOTE"
 folder: "cdf3da13e79e819c8162"
 title: "bash"
@@ -158,6 +158,51 @@ content: '''
   显示最后命令的退出状态。0表示没有错误，其他任何值表明有错误。
   ```
   
+  - 赋值
+  通过(())来赋值
+  $((case_size=$1/1024+1))
+  
+  $((spi_flash_mmio=0xff000000))
+  
+  $((skip_offset=$spi_flash_mmio/10240))
+  
+  $((($base_addr+$i)+($die_num<<20)+($port_offset<<12)))
+  
+  - bash 算数运算
+  1. let 表达式
+  x=3
+  y=5
+  let z1=3+5;         echo $z1    # output: 8, notice no whitespace is allowed.
+  let z1=x+y;         echo $z1    # output: 8
+  let z1=$x+$y;       echo $z1    # output: 8
+  
+  3. expr 表达式
+  let z1=$x+$y;       echo $z1    # output: 8
+  
+  5. 双括号表达式
+  ((z=3+5));          echo $z # output: 8
+  ((z = 3 + 5));      echo $z # output: 8
+  
+  - 进制转换
+    - 八进制转十进制：
+  [chengmo@centos5 ~]$ ((num=0123));
+  [chengmo@centos5 ~]$ echo $num;
+  83
+  [chengmo@centos5 ~]$ ((num=8#123));
+  [chengmo@centos5 ~]$ echo $num;    
+  83
+  ((表达式))，（（））里面可以是任意数据表达式。如果前面加入：”$”可以读取计算结果。
+    - 十六进制转十进制：
+  [chengmo@centos5 ~]$ ((num=0xff)); 
+  [chengmo@centos5 ~]$ echo $num;    
+  255
+  [chengmo@centos5 ~]$ ((num=16#ff));
+  [chengmo@centos5 ~]$ echo $num;    
+  255
+    - 十进制转八进制
+  这里使用到：bc外部命令完成。bc命令格式转换为：echo "obase=进制;值"|bc
+  [chengmo@centos5 ~]$ echo "obase=8;01234567"|bc
+  4553207
 '''
 linesHighlighted: []
 isStarred: false
