@@ -1,5 +1,5 @@
 createdAt: "2019-12-02T12:22:38.239Z"
-updatedAt: "2019-12-14T03:57:50.294Z"
+updatedAt: "2019-12-16T12:37:34.435Z"
 type: "MARKDOWN_NOTE"
 folder: "321a76b22995ee491e72"
 title: "tips"
@@ -278,6 +278,15 @@ content: '''
   ```
   
   ![新建位图图像 (10).bmp](:storage\\292264db-702a-4ec1-8042-63ae0e31694f\\13f4b135.bmp)
+  
+  ## 套接字选项
+  ```
+  int getsockopt(int sockfd, int level, int optname, void *optval, socklen_t *optlen);
+  int setsockopt(int sockfd, int level, int optname, const void *optval, socklen_t option);
+  ```
+  ![新建位图图像.bmp](:storage\\292264db-702a-4ec1-8042-63ae0e31694f\\5e673fe9.bmp)
+  ![新建位图图像 (2).bmp](:storage\\292264db-702a-4ec1-8042-63ae0e31694f\\8d3a1be7.bmp)
+  ![新建位图图像 (3).bmp](:storage\\292264db-702a-4ec1-8042-63ae0e31694f\\4c2c7123.bmp)
   
 '''
 linesHighlighted: []

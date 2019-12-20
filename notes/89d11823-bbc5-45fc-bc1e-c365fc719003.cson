@@ -1,5 +1,5 @@
 createdAt: "2019-11-30T08:23:48.270Z"
-updatedAt: "2019-12-11T03:18:26.542Z"
+updatedAt: "2019-12-19T09:25:11.709Z"
 type: "MARKDOWN_NOTE"
 folder: "cdf3da13e79e819c8162"
 title: "bash"
@@ -157,7 +157,15 @@ content: '''
   $?
   显示最后命令的退出状态。0表示没有错误，其他任何值表明有错误。
   ```
-  
+  ```c
+  foo () {
+  a=$1
+  echo $a
+  }
+  $1为foo的参数1
+  result=$(foo)
+  函数返回值尽量用echo, return会不好用
+  ```
   - 赋值
   通过(())来赋值
   $((case_size=$1/1024+1))
@@ -203,6 +211,9 @@ content: '''
   这里使用到：bc外部命令完成。bc命令格式转换为：echo "obase=进制;值"|bc
   [chengmo@centos5 ~]$ echo "obase=8;01234567"|bc
   4553207
+  
+  - 变量作用域
+  默认变量是全局的，但是在函数中添加了local来修饰则表示该变量为局部变量。如果全局变量与local相同则优先使用local变量。
 '''
 linesHighlighted: []
 isStarred: false
