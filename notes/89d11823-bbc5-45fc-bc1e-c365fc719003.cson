@@ -1,5 +1,5 @@
 createdAt: "2019-11-30T08:23:48.270Z"
-updatedAt: "2019-12-19T09:25:11.709Z"
+updatedAt: "2019-12-24T04:32:47.843Z"
 type: "MARKDOWN_NOTE"
 folder: "cdf3da13e79e819c8162"
 title: "bash"
@@ -214,6 +214,8 @@ content: '''
   
   - 变量作用域
   默认变量是全局的，但是在函数中添加了local来修饰则表示该变量为局部变量。如果全局变量与local相同则优先使用local变量。
+  
+  - 在bash中一定要注意16进制和10进制进行区分，尤其是setpci的时候
 '''
 linesHighlighted: []
 isStarred: false

@@ -1,5 +1,5 @@
 createdAt: "2019-09-09T08:39:21.530Z"
-updatedAt: "2019-12-11T03:55:10.976Z"
+updatedAt: "2019-12-30T09:43:03.895Z"
 type: "MARKDOWN_NOTE"
 folder: "cdf3da13e79e819c8162"
 title: "Daily Note"
@@ -147,6 +147,9 @@ content: '''
   - 2019/12/11
   通过ip addr add xxx.xxx.xxx.xxx/24 dev enos1
   设置ip后需要ip link set enos1 up来启动网卡 否则设置不成功。
+  - 2019/12/30
+  TLB可以理解为页表cache。快表，直译为旁路快表缓冲，也可以理解为页表缓冲，地址变换高速缓存。TLB是一种高速缓存，内存管理硬件使用它来改善虚拟地址到物理地址的转换速度。当前所有的个人桌面，笔记本和服务器处理器都使用TLB来进行虚拟地址到物理地址的映射。使用TLB内核可以快速的找到虚拟地址指向物理地址，而不需要请求RAM内存获取虚拟地址到物理地址的映射关系。这与data cache和instruction caches有很大的相似之处。
+  想像一下x86_32架构下没有TLB的存在时的情况，对线性地址的访问，首先从PGD中获取PTE（第一次内存访问），在PTE中获取页框地址（第二次内存访问），最后访问物理地址，总共需要3次RAM的访问。如果有TLB存在，并且TLB hit，那么只需要一次RAM访问即可。
 '''
 linesHighlighted: []
 isStarred: false
