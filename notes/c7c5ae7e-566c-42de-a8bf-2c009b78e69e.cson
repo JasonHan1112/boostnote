@@ -1,5 +1,5 @@
 createdAt: "2019-09-05T02:45:33.128Z"
-updatedAt: "2019-09-06T01:49:19.230Z"
+updatedAt: "2020-01-18T11:08:27.852Z"
 type: "MARKDOWN_NOTE"
 folder: "0f2348c925e25ffcf8a0"
 title: "hello world"
@@ -110,8 +110,47 @@ content: '''
   
   ```mermaid
   graph LR;
-      A[A] --> B[B];
+      A[你好] --> B[你好吗];
   ```
+  
+  
+  ```flowchart
+  st=>start: 开始
+  op=>operation: Your Operation
+  cond=>condition: Yes or No?
+  e=>end
+  d=>end
+  st->op->cond
+  cond(yes)->e
+  cond(no)->d
+  ```
+  ```flowchart
+  st=>start: 开始
+  op=>operation: oper
+  st->op
+  
+  ```
+  ```flowchart
+  st=>start: start
+  op=>operation: op
+  st->op
+  ```
+  
+  ```flowchart
+  st=>start: 开始
+  e=>end: 结束
+  op1=>operation: 操作1
+  op2=>operation: 操作2
+  op3=>operation: 操作3
+  pa=>parallel: 多输出操作4
+  cond=>condition: 确认？
+  
+  st->op1->cond
+  cond(true)->e	
+  cond(no)->op2(right)->op3->pa(path1,left)->op3
+  pa(path2,left)->e
+  ```
+  
   
   
 '''
