@@ -1,5 +1,5 @@
 createdAt: "2019-11-30T08:23:48.270Z"
-updatedAt: "2019-12-24T04:32:47.843Z"
+updatedAt: "2020-01-21T08:47:46.622Z"
 type: "MARKDOWN_NOTE"
 folder: "cdf3da13e79e819c8162"
 title: "bash"
@@ -9,7 +9,8 @@ content: '''
   ### 在bash中 . 表示在当前shell中执行命令
   例如切换目录指令如果在脚本中写了cd那么表示会另起一个shell在那个shell中cd而不表示在当前shell中切换目录。如果需要在当前目录下按照脚本的路径进行切换目录需要加 . shellscript
   
-  2019/11/30
+  - 输入参数时只有一个 \\ 表示换行，如果\\后边跟着其他的则表示literal value of the next character that follows
+  
   # bash 
   - 数值测试
   -eq
@@ -178,19 +179,22 @@ content: '''
   
   - bash 算数运算
   1. let 表达式
+  ```c
   x=3
   y=5
   let z1=3+5;         echo $z1    # output: 8, notice no whitespace is allowed.
   let z1=x+y;         echo $z1    # output: 8
   let z1=$x+$y;       echo $z1    # output: 8
-  
+  ```
   3. expr 表达式
+  ```c
   let z1=$x+$y;       echo $z1    # output: 8
-  
+  ```
   5. 双括号表达式
+  ```c
   ((z=3+5));          echo $z # output: 8
   ((z = 3 + 5));      echo $z # output: 8
-  
+  ```
   - 进制转换
     - 八进制转十进制：
   [chengmo@centos5 ~]$ ((num=0123));
